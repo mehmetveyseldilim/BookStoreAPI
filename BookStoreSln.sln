@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.API", "BookStore.API\BookStore.API.csproj", "{A07D7579-32D4-476D-A5C5-7E345F4047DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Domain", "BookStore.Domain\BookStore.Domain.csproj", "{6EFC1FAF-1603-4780-AFB5-BBECAD2D45DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Infrastucture", "BookStore.Infrastucture\BookStore.Infrastucture.csproj", "{1384148E-6A0C-4A43-B5B1-1AB3F0DD685A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A07D7579-32D4-476D-A5C5-7E345F4047DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A07D7579-32D4-476D-A5C5-7E345F4047DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A07D7579-32D4-476D-A5C5-7E345F4047DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A07D7579-32D4-476D-A5C5-7E345F4047DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EFC1FAF-1603-4780-AFB5-BBECAD2D45DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EFC1FAF-1603-4780-AFB5-BBECAD2D45DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EFC1FAF-1603-4780-AFB5-BBECAD2D45DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EFC1FAF-1603-4780-AFB5-BBECAD2D45DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1384148E-6A0C-4A43-B5B1-1AB3F0DD685A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1384148E-6A0C-4A43-B5B1-1AB3F0DD685A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1384148E-6A0C-4A43-B5B1-1AB3F0DD685A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1384148E-6A0C-4A43-B5B1-1AB3F0DD685A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
