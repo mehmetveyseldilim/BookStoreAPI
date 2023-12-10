@@ -6,3 +6,6 @@ BookStore.Domain/obj
 
 BookStore.Infrastucture/bin
 BookStore.Infrastucture/obj
+
+BookStore.Entities/bin
+BookStore.Entities/obj
