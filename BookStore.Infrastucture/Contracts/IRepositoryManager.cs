@@ -7,7 +7,7 @@ namespace BookStore.Infrastucture.Contracts
 {
     public interface IRepositoryManager
     {
-        	IBookRepository Book { get; }
+        	IBookRepository Books { get; }
 	        Task SaveAsync();
     }
 }

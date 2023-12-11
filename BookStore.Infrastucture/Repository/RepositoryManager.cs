@@ -12,14 +12,14 @@ namespace BookStore.Infrastucture.Repository
         private readonly Lazy<IBookRepository> _bookRepository;
 
 
-        public RepositoryManager(BookStoreDbContext repositoryContext, Lazy<IBookRepository> bookRepository)
+        public RepositoryManager(BookStoreDbContext repositoryContext)
         {
             _repositoryContext = repositoryContext;
-            _bookRepository = bookRepository;
+            _bookRepository = new Lazy<IBookRepository>(() => new BookRepository(repositoryContext));
         }
 
 
-        public IBookRepository Book => _bookRepository.Value;
+        public IBookRepository Books => _bookRepository.Value;
 
         public async Task SaveAsync()
         {

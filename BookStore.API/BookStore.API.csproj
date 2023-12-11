@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BookStore.Infrastucture\BookStore.Infrastucture.csproj" />
+    <ProjectReference Include="..\BookStore.Domain\BookStore.Domain.csproj" />
+
   </ItemGroup>
 
 </Project>
