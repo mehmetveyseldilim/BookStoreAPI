@@ -1,0 +1,32 @@
+[
+    {
+      "Id": 1,
+      "Name": "Stephen",
+      "Surname": "King",
+      "Birth": "1947-09-21"
+    },
+    {
+      "Id": 2,
+      "Name": "J.R.R.",
+      "Surname": "Tolkien",
+      "Birth": "1892-01-03"
+    },
+    {
+      "Id": 3,
+      "Name": "Agatha",
+      "Surname": "Christie",
+      "Birth": "1890-09-15"
+    },
+    {
+      "Id": 4,
+      "Name": "Jane",
+      "Surname": "Austen",
+      "Birth": "1775-12-16"
+    },
+    {
+      "Id": 5,
+      "Name": "Haruki",
+      "Surname": "Murakami",
+      "Birth": "1949-01-12"
+    }
+  ]

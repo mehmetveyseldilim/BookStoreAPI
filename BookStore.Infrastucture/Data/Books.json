@@ -1,0 +1,52 @@
+[
+    {
+      "Id": 1,
+      "Title": "The Shining",
+      "ReleaseDate": "1977-01-01",
+      "AuthorId": 1,
+      "GenreId": 1
+    },
+    {
+      "Id": 2,
+      "Title": "The Lord of the Rings",
+      "ReleaseDate": "1954-07-29",
+      "AuthorId": 2,
+      "GenreId": 2
+    },
+    {
+      "Id": 3,
+      "Title": "And Then There Were None",
+      "ReleaseDate": "1939-01-01",
+      "AuthorId": 3,
+      "GenreId": 3
+    },
+    {
+      "Id": 4,
+      "Title": "The Hobbit",
+      "ReleaseDate": "1937-09-21",
+      "AuthorId": 2,
+      "GenreId": 2
+    },
+    {
+      "Id": 5,
+      "Title": "Murder on the Orient Express",
+      "ReleaseDate": "1934-01-01",
+      "AuthorId": 3,
+      "GenreId": 3
+    },
+    {
+      "Id": 6,
+      "Title": "Pride and Prejudice",
+      "ReleaseDate": "1813-01-28",
+      "AuthorId": 4,
+      "GenreId": 4
+    },
+    {
+      "Id": 8,
+      "Title": "Sense and Sensibility",
+      "ReleaseDate": "1811-01-31",
+      "AuthorId": 4,
+      "GenreId": 4
+    }
+  ]
+  

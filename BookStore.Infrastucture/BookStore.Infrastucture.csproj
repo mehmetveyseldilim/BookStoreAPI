@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.14" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     
     
   </ItemGroup>
@@ -17,5 +18,16 @@
     <ProjectReference Include="..\BookStore.Entities\BookStore.Entities.csproj" />
   </ItemGroup>
 
+<ItemGroup>
+  <None Update="Data\Authors.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+  <None Update="Data\Books.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+  <None Update="Data\Genres.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
 
 </Project>
