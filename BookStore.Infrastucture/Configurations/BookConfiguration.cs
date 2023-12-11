@@ -12,7 +12,7 @@ namespace BookStore.Infrastucture.Configurations
     {
         public void Configure(EntityTypeBuilder<Book> builder)
         {
-            builder.ToTable("Books");
+            builder.ToTable("Books"/*, BookStoreDbContext.SCHEMA_NAME*/);
 
             builder.HasKey(b => b.Id);
 

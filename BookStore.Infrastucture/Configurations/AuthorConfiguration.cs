@@ -12,7 +12,7 @@ namespace BookStore.Infrastucture.Configurations
     {
         public void Configure(EntityTypeBuilder<Author> builder)
         {
-            builder.ToTable("Authors");
+            builder.ToTable("Authors"/*, BookStoreDbContext.SCHEMA_NAME*/);
 
             builder.HasKey(a => a.Id);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
