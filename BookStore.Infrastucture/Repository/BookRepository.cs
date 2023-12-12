@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BookStore.Entities.Models;
 using BookStore.Entities.RequestFeatures;
 using BookStore.Infrastucture.Contracts;
+using BookStore.Infrastucture.Extensions.QueryExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Infrastucture.Repository
@@ -17,9 +18,16 @@ namespace BookStore.Infrastucture.Repository
             
         }
 
-        public async Task<IEnumerable<Book>> GetAllBooksAsycn(BookRequestParameters bookRequestParameters, bool trackChanges)
+        public async Task<IEnumerable<Book>> GetAllBooksAsycn(BookRequestParameters bookRequestParameters, 
+        bool trackChanges,
+        int? foreignAuthorId = null, 
+        int? foreignGenreId = null)
         {
-            var books =  await FindAll(trackChanges: trackChanges).ToListAsync();
+            var books =  await FindAll(trackChanges: trackChanges)
+                         .FilterBooks(bookRequestParameters)
+                         .FilterBooksByForeignAuthorId(foreignAuthorId)
+                         .FilterBooksByForeignGenreId(foreignGenreId)
+                        .ToListAsync();
 
 
 

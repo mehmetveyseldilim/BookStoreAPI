@@ -11,7 +11,8 @@ namespace BookStore.Domain.Contracts
 {
     public interface IBookService
     {
-        Task<IEnumerable<BookResponseDTO>> GetAllBooksAsync(BookRequestParameters bookRequestParameters, bool trackChanges);
+        Task<IEnumerable<BookResponseDTO>> GetAllBooksAsync(BookRequestParameters bookRequestParameters, 
+        bool trackChanges, int? foreignAuthorId = null, int? foreignGenreId = null);
 
         Task<BookResponseDTO> GetBookByIdAsync(int bookId, bool trackChanges);
 

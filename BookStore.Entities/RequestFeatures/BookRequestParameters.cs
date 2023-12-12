@@ -13,13 +13,13 @@ namespace BookStore.Entities.RequestFeatures
             OrderBy = "Title";
         }
 
-        public DateOnly EndingDate {get; set;} = DateOnly.FromDateTime(DateTime.Now);
+        public string? Title { get; set; } = String.Empty;
 
-        public DateOnly BeginningDate {get; set;} = DateOnly.FromDateTime(DateTime.MinValue);
+        public DateOnly? EndingDate {get; set;} = null;
 
-        [JsonIgnore]
-        //[BindNever]
-        public bool ValidDateRange => BeginningDate <= EndingDate;
+        public DateOnly? BeginningDate {get; set;} = null;
+
+        private bool ValidDateRange => BeginningDate <= EndingDate;
 
 
     }

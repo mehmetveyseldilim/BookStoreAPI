@@ -9,7 +9,7 @@ namespace BookStore.Entities.Models
     {
         public int Id {get; set;}
 
-        public string Title { get; set; }
+        public required string Title { get; set; }
 
         public DateOnly ReleaseDate {get; set;}
 
@@ -19,9 +19,9 @@ namespace BookStore.Entities.Models
 
         public int AuthorId {get; set;}
 
-        public Author Author {get; set;}
+        public required Author Author {get; set;}
 
         public int GenreId {get; set;}
-        public Genre Genre {get; set;}
+        public required Genre Genre {get; set;}
     }
 }

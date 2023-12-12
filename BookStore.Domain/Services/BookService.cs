@@ -23,7 +23,8 @@ namespace BookStore.Domain.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<BookResponseDTO>> GetAllBooksAsync(BookRequestParameters bookRequestParameters, bool trackChanges)
+        public async Task<IEnumerable<BookResponseDTO>> GetAllBooksAsync(BookRequestParameters bookRequestParameters, 
+        bool trackChanges, int? foreignAuthorId = null, int? foreignGenreId = null)
         {
             var books = await _repository.Books.GetAllBooksAsycn(bookRequestParameters, trackChanges);
 

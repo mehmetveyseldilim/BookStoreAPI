@@ -9,7 +9,8 @@ namespace BookStore.Infrastucture.Contracts
 {
     public interface IBookRepository
     {
-        Task<IEnumerable<Book>> GetAllBooksAsycn(BookRequestParameters bookRequestParameters, bool trackChanges);
+        Task<IEnumerable<Book>> GetAllBooksAsycn(BookRequestParameters bookRequestParameters, 
+         bool trackChanges, int? foreignAuthorId = null, int? foreignGenreId = null);
 
         Task<Book?> GetBookByIdAsync(int bookId, bool trackChanges);
 
