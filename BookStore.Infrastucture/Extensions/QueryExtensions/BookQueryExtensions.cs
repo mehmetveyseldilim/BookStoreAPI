@@ -1,5 +1,7 @@
+using System.Linq.Dynamic.Core;
 using BookStore.Entities.Models;
 using BookStore.Entities.RequestFeatures;
+using BookStore.Infrastucture.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Infrastucture.Extensions.QueryExtensions
@@ -34,6 +36,23 @@ namespace BookStore.Infrastucture.Extensions.QueryExtensions
             }
 
             return books;
+        }
+
+        public static IQueryable<Book> Sort(this IQueryable<Book> books, string orderByQueryString) 
+        {
+            if(string.IsNullOrWhiteSpace(orderByQueryString)) 
+            {
+                return books.OrderBy(x => x.Title);
+            }
+
+            var orderQuery = GenericQueryParameterProcessor.CreateOrderQuery<Book>(orderByQueryString);
+
+            if (string.IsNullOrWhiteSpace(orderQuery))
+                return books.OrderBy(e => e.Title);
+
+            return books.OrderBy(orderQuery);
+
+
         }
 
         private static IQueryable<Book> FilterBooksByDate(IQueryable<Book> books, DateOnly? begin, DateOnly? end)
