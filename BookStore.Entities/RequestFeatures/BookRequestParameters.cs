@@ -10,7 +10,7 @@ namespace BookStore.Entities.RequestFeatures
     {
         public BookRequestParameters()
         {
-            OrderBy = "Title";
+            OrderBy = "id";
         }
 
         public string? Title { get; set; } = String.Empty;

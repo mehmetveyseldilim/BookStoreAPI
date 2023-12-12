@@ -42,13 +42,13 @@ namespace BookStore.Infrastucture.Extensions.QueryExtensions
         {
             if(string.IsNullOrWhiteSpace(orderByQueryString)) 
             {
-                return books.OrderBy(x => x.Title);
+                return books.OrderBy(x => x.Id);
             }
 
             var orderQuery = GenericQueryParameterProcessor.CreateOrderQuery<Book>(orderByQueryString);
 
             if (string.IsNullOrWhiteSpace(orderQuery))
-                return books.OrderBy(e => e.Title);
+                return books.OrderBy(e => e.Id);
 
             return books.OrderBy(orderQuery);
 

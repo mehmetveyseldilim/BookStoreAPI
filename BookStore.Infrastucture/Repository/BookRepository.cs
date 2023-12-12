@@ -27,6 +27,7 @@ namespace BookStore.Infrastucture.Repository
                          .FilterBooks(bookRequestParameters)
                          .FilterBooksByForeignAuthorId(foreignAuthorId)
                          .FilterBooksByForeignGenreId(foreignGenreId)
+                         .Sort(bookRequestParameters.OrderBy!)
                         .ToListAsync();
 
 
