@@ -1,5 +1,6 @@
 using BookStore.API.Extensions;
 using BookStore.API.Extensions.MiddlewareExtensions;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,11 @@ builder.Services.ConfigureServiceManager();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => 
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "SwaggerBookStoreAPI", Version = "v1" });
+});
+
 
 var app = builder.Build();
 

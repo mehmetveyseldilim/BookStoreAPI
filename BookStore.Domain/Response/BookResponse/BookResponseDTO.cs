@@ -10,7 +10,7 @@ namespace BookStore.Domain.Response.BookResponse
     {
         public int Id {get; set;}
 
-        public string Title { get; set; }
+        public required string Title { get; set; }
 
         public DateOnly ReleaseDate {get; set;}
 

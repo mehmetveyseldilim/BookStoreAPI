@@ -26,7 +26,7 @@ namespace BookStore.Domain.Services
         public async Task<IEnumerable<BookResponseDTO>> GetAllBooksAsync(BookRequestParameters bookRequestParameters, 
         bool trackChanges, int? foreignAuthorId = null, int? foreignGenreId = null)
         {
-            if(bookRequestParameters.IsDateValid) 
+            if(bookRequestParameters.IsDateValid()) 
             {
                 throw new ValidDateException();
             }

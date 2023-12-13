@@ -45,6 +45,8 @@ namespace BookStore.Infrastucture.Extensions.QueryExtensions
                 return books.OrderBy(x => x.Id);
             }
 
+            
+
             var orderQuery = GenericQueryParameterProcessor.CreateOrderQuery<Book>(orderByQueryString);
 
             if (string.IsNullOrWhiteSpace(orderQuery))

@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using BookStore.Entities.Exceptions;
+
 
 namespace BookStore.Infrastucture.Helpers
 {
@@ -14,6 +11,8 @@ namespace BookStore.Infrastucture.Helpers
         {
             var orderParams = orderByQueryString.Trim().Split(',');
             var propertyInfos = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var hashMap = GetAllProperties(propertyInfos);
+
             var orderQueryBuilder = new StringBuilder();
 
             foreach (var param in orderParams)
@@ -24,18 +23,71 @@ namespace BookStore.Infrastucture.Helpers
                 var trimmedQueryName = param.Trim();
                 var propertyFromQueryName = trimmedQueryName.Split(" ")[0];
 
-                var objectProperty = propertyInfos.FirstOrDefault(pi =>
-                pi.Name.Equals(propertyFromQueryName, StringComparison.InvariantCultureIgnoreCase));
 
-                if (objectProperty == null)
+                var objectProperty = hashMap.FirstOrDefault(pi =>
+                pi.Equals(propertyFromQueryName, StringComparison.InvariantCultureIgnoreCase));
+
+                if (objectProperty == null) 
+                {
                     throw new PropertyNotFoundException(propertyFromQueryName);
+                }
+                    
 
-                var direction = param.EndsWith(" desc", StringComparison.InvariantCultureIgnoreCase) ? "descending" : "ascending";
-                orderQueryBuilder.Append($"{objectProperty.Name.ToString()} {direction}, ");
+                var direction = param.EndsWith(" desc", StringComparison.InvariantCultureIgnoreCase) 
+                    ? "descending" : "ascending";
+
+                orderQueryBuilder.Append($"{objectProperty} {direction}, ");
             }
 
             var orderQuery = orderQueryBuilder.ToString().TrimEnd(',', ' ');
             return orderQuery;
+        }
+
+        private static HashSet<string> GetAllProperties(PropertyInfo[] properties) 
+        {
+            //* Create a new hashset for avoiding duplicated values and fast search operation
+            var hashSet = new HashSet<string>();
+
+            foreach (var property in properties)
+            {
+                string propertyName = property.Name;
+                Type propertyType = property.PropertyType;
+                string propertyTypeName = property.PropertyType.Name;
+
+                // If it is a Navigational Property
+                if(propertyType.IsClass && propertyType != typeof(string)) 
+                {
+                    // Get Properties of Navigational Property
+                    var navigationValueAndStringProperties = GetNonNavigationalProperties(propertyType);
+                    
+                    // Add it like Author.Name so  System.Linq.Dynamic.Core library can automatically 
+                    // create the query
+                    foreach (var navProperty in navigationValueAndStringProperties)
+                    {
+                        hashSet.Add($"{propertyTypeName}.{navProperty.Name}");
+                    }
+                }
+                
+                else
+                { //~ It is not navigational property. It is either string or value type property.
+                    hashSet.Add(propertyName);
+                }
+            }
+
+            return hashSet;
+        }
+
+        //* Getting non-class (non-navigational basically) and string properties from a Type
+        private static PropertyInfo[] GetNonNavigationalProperties(Type type) 
+        {
+            //~ Getting only value types and string type properties. 
+            //~ So for Genre model ICollection<Book> Property is not selected
+            var propertyInfos = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                                .Where(x => x.PropertyType.IsValueType || x.PropertyType == typeof(string))
+                                .ToArray();
+
+            return propertyInfos;
+
         }
 
     }

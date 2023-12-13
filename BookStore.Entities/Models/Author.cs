@@ -8,15 +8,15 @@ namespace BookStore.Entities.Models
     public class Author
     {
         public int Id {get; set;}
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
-        public string Surname {get; set;}
+        public required string Surname {get; set;}
 
         public DateOnly Birth {get; set;}
 
 
         //* Adding Navigation Properties
         
-        public ICollection<Book> Books {get; set;}
+        public required ICollection<Book> Books {get; set;}
     }
 }
