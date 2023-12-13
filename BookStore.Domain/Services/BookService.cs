@@ -26,6 +26,11 @@ namespace BookStore.Domain.Services
         public async Task<IEnumerable<BookResponseDTO>> GetAllBooksAsync(BookRequestParameters bookRequestParameters, 
         bool trackChanges, int? foreignAuthorId = null, int? foreignGenreId = null)
         {
+            if(bookRequestParameters.IsDateValid) 
+            {
+                throw new ValidDateException();
+            }
+
             var books = await _repository.Books.GetAllBooksAsycn(bookRequestParameters, trackChanges);
 
             var booksDTO = _mapper.Map<IEnumerable<BookResponseDTO>>(books);
