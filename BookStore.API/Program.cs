@@ -1,10 +1,10 @@
 using BookStore.API.Extensions;
-using BookStore.API.Extensions.MiddlewareExtensions;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Host.ConfigureSerilog(builder.Configuration);
 builder.Services.AddPostgresDbContext(builder.Configuration);
 builder.Services.AddAutoMapperService();
 builder.Services.ConfigureRepositoryManager();
