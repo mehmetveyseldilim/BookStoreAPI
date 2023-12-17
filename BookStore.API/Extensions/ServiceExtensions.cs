@@ -7,6 +7,7 @@ using BookStore.Domain.Services;
 using BookStore.Infrastucture;
 using BookStore.Infrastucture.Contracts;
 using BookStore.Infrastucture.Repository;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -56,6 +57,14 @@ namespace BookStore.API.Extensions
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;
+        }
+
+        public static IServiceCollection ConfigureValidators(this IServiceCollection services)
+        {
+            services.AddValidatorsFromAssemblyContaining<Program>(ServiceLifetime.Singleton);
+
+            return services;
+
         }
 
     }

@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.Request
 {
-    public class BookUpdateDTO
+    public class BookUpdateDTO : BookManipulationDTO
     {
-        
+
+
     }
 }

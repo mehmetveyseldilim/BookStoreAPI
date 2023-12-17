@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 
 namespace BookStore.Domain.Request
 {
-    public class BookCreateDTO : BookManipulationDTO
+    public abstract class BookManipulationDTO
     {
+        public required string Title { get; set; }
 
-
-        public int AuthorId {get; set;}
-
-        public int GenreId {get; set;}
+        public DateOnly ReleaseDate {get; set;}
     }
 }
