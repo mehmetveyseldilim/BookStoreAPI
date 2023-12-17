@@ -1,9 +1,11 @@
 using BookStore.API.Extensions;
+using BookStore.API.Filters;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddScoped<HandleValidationFailureFilterAttribute>();
 // Add services to the container.
+builder.Services.ConfigureValidators();
 builder.Host.ConfigureSerilog(builder.Configuration);
 builder.Services.AddPostgresDbContext(builder.Configuration);
 builder.Services.AddAutoMapperService();
@@ -20,7 +22,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-app.ConfigureGlobalExceptionHandler();
+app.UseGlobalExceptionHandlerMiddleware();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

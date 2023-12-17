@@ -8,14 +8,11 @@ namespace BookStore.API.Extensions
 {
     public static class MiddlewareExtensions
     {
-        public static IApplicationBuilder ConfigureGlobalExceptionHandler(this IApplicationBuilder applicationBuilder)
+        public static IApplicationBuilder UseGlobalExceptionHandlerMiddleware(this IApplicationBuilder applicationBuilder)
         {   
-            applicationBuilder.UseMiddleware<GlobalExceptionHandler>();
+            applicationBuilder.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
             return applicationBuilder;
         }
     }
 }
-
-
-
