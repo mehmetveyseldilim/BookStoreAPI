@@ -22,7 +22,7 @@ namespace BookStore.Infrastucture.Helpers
                 result = JsonConvert.DeserializeObject<List<TEntity>>(json);
             }
 
-            return result;
+            return result!;
         }
 
     }
