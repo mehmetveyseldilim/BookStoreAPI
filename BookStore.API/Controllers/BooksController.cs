@@ -1,19 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
 using BookStore.API.Filters;
-using BookStore.API.Validators;
-using BookStore.API.Validators.BookValidators;
 using BookStore.Domain.Contracts;
 using BookStore.Domain.Request;
-using BookStore.Domain.Response;
 using BookStore.Domain.Response.BookResponse;
-using BookStore.Entities.ErrorModel;
 using BookStore.Entities.RequestFeatures;
 using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.API.Controllers
@@ -90,7 +81,7 @@ namespace BookStore.API.Controllers
             if(!validationResult.IsValid) 
             {
                 _logger.LogError($"Validation Errors Happened In {nameof(UpdateBook)}.");
-                return BadRequest();
+                return BadRequest(validationResult);
                 // return HandleValidationFailure(validationResult);
             }
 
