@@ -12,6 +12,8 @@ namespace BookStore.Infrastucture.Contracts
 
         Task<Genre?> GetGenreByIdAsync(int genreId, bool trackChanges);
 
+        Task<bool> CheckIfGenreExistsAsync(int genreId);
+
         void CreateGenre(Genre genre);
 
     }

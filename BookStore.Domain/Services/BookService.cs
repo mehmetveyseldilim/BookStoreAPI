@@ -1,7 +1,6 @@
 using AutoMapper;
 using BookStore.Domain.Contracts;
 using BookStore.Domain.Request;
-using BookStore.Domain.Response;
 using BookStore.Domain.Response.BookResponse;
 using BookStore.Entities.Exceptions;
 using BookStore.Entities.Models;
@@ -16,11 +15,14 @@ namespace BookStore.Domain.Services
         private readonly IRepositoryManager _repository;
         private readonly IMapper _mapper;
 
+        private readonly ILogger<BookService> _logger;
 
-        public BookService(IRepositoryManager repository, IMapper mapper)
+
+        public BookService(IRepositoryManager repository, IMapper mapper, ILogger<BookService> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<IEnumerable<BookResponseDTO>> GetAllBooksAsync(BookRequestParameters bookRequestParameters, 
@@ -50,6 +52,14 @@ namespace BookStore.Domain.Services
 
         public async Task<BookResponseDTO> CreateBookAsync(BookCreateDTO book)
         {
+            //. Check if Author with book.AuthorId Exists
+            int authorId = book.AuthorId;
+            int genreId = book.GenreId;
+
+            await CheckIfAuthorExistsAsync(authorId);
+            await CheckIfGenreExistsAsync(genreId);
+
+
             var bookEntiy = _mapper.Map<Book>(book);
 
             _repository.Books.CreateBook(bookEntiy);
@@ -91,6 +101,32 @@ namespace BookStore.Domain.Services
 
             return book;
         }
+
+        private async Task<bool> CheckIfAuthorExistsAsync(int authorId) 
+        {
+            var doesAuthorExist = await _repository.Authors.CheckIfAuthorExistsAsync(authorId);
+
+            if(!doesAuthorExist) 
+            {
+                throw new AuthorNotFound(authorId);
+            }
+
+            return doesAuthorExist;
+        }
+
+        private async Task<bool> CheckIfGenreExistsAsync(int genreId) 
+        {
+            var doesGenreExist = await _repository.Authors.CheckIfAuthorExistsAsync(genreId);
+
+            if(!doesGenreExist) 
+            {
+                throw new AuthorNotFound(genreId);
+            }
+
+            return doesGenreExist;
+        }
+
+
 
 
     }

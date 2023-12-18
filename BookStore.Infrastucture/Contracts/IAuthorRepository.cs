@@ -14,6 +14,8 @@ namespace BookStore.Infrastucture.Contracts
 
         Task<Author?> GetAuthorByIdAsync(int authorId, bool trackChanges);
 
+        Task<bool> CheckIfAuthorExistsAsync(int authorId);
+
         void CreateAuthor(Author author);
 
         void DeleteAuthor(Author author);

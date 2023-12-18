@@ -14,6 +14,12 @@ namespace BookStore.Infrastucture.Repository
         {
             
         }
+
+        public Task<bool> CheckIfGenreExistsAsync(int genreId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void CreateGenre(Genre genre)
         {
             Create(genre);

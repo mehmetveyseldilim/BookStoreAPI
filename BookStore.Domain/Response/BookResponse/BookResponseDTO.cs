@@ -14,6 +14,10 @@ namespace BookStore.Domain.Response.BookResponse
 
         public DateOnly ReleaseDate {get; set;}
 
+        public int AuthorId {get; set;}
+
+        public int GenreId {get; set;}
+
         //* Navigation Properties
 
         public BookAuthorResponseDTO? Author {get; set;}

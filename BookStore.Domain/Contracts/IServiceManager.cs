@@ -8,5 +8,9 @@ namespace BookStore.Domain.Contracts
     public interface IServiceManager
     {
         IBookService BookService {get;}
+
+        IGenreService GenreService {get;}
+
+        IAuthorService AuthorService {get;}
     }
 }

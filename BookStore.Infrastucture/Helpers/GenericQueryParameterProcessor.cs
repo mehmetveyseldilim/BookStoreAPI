@@ -1,6 +1,10 @@
+using System.Collections;
+using System.Collections.ObjectModel;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using BookStore.Entities.Exceptions;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
 
 
 namespace BookStore.Infrastucture.Helpers
@@ -53,9 +57,16 @@ namespace BookStore.Infrastucture.Helpers
                 string propertyName = property.Name;
                 Type propertyType = property.PropertyType;
                 string propertyTypeName = property.PropertyType.Name;
+                bool isTypeGeneric = propertyType.IsGenericType;
+                bool isPropertyTypeClass = propertyType.IsClass;
+                bool isThePropertyTypeString = propertyType == typeof(string);
+
+
+                // }
+
 
                 // If it is a Navigational Property
-                if(propertyType.IsClass && propertyType != typeof(string)) 
+                if(isPropertyTypeClass && !isThePropertyTypeString) 
                 {
                     // Get Properties of Navigational Property
                     var navigationValueAndStringProperties = GetNonNavigationalProperties(propertyType);
@@ -66,6 +77,20 @@ namespace BookStore.Infrastucture.Helpers
                     {
                         hashSet.Add($"{propertyTypeName}.{navProperty.Name}");
                     }
+                }
+
+                else if(isTypeGeneric) 
+                {
+                    var typeArg = property.PropertyType.GetGenericArguments()[0];
+                    var typeArgName = typeArg.Name;
+                    // bool isICollectionTypeFromGenericArgument = typeof(ICollection).IsAssignableFrom(propertyType);
+                    bool isICollectionTypeFromGenericArgument = propertyType.GetGenericTypeDefinition() == typeof(ICollection<>);
+                    
+                    if(isICollectionTypeFromGenericArgument)
+                    {
+                        hashSet.Add($"{typeArgName}s.Count()");
+                    }
+
                 }
                 
                 else
@@ -90,5 +115,10 @@ namespace BookStore.Infrastucture.Helpers
 
         }
 
+ 
+
+
+
     }
 }
+
